@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Models } from "node-appwrite";
 import { actionsDropdownItems } from "@/constants";
@@ -46,9 +46,13 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     setIsDropdownOpen(false);
     setAction(null);
     setName(file.name);
-    document.body.style.pointerEvents = "auto";
+    document.body.style.pointerEvents = "";
     //   setEmails([]);
   };
+
+  useEffect(() => {
+    document.body.style.pointerEvents = "auto";
+  });
 
   const handleAction = async () => {
     if (!action) return;
